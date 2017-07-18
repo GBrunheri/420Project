@@ -1,0 +1,39 @@
+#!/bin/sh
+
+csgo_pid=$(pidof csgo_linux64)
+if [ -z "$csgo_pid" ]; then
+    /bin/echo -e "\e[31mCSGO precisa estar aberto para injetar...\e[0m"
+    exit 1
+fi
+
+if [ ! -d ".git" ]; then
+    /bin/echo "We have detected that you have downloaded Robertux-master.zip from the GitHub website. This is the WRONG way to download Robertux. Please download Robertux with the command 'git clone --recursive https://github.com/dikbutt/AyyTux'"
+fi
+
+# pBypass paste for crash dumps being sent
+sudo rm -rf /tmp/dumps # Remove if it's there
+sudo mkdir /tmp/dumps # Make it as root
+sudo chmod 000 /tmp/dumps # No permissions
+
+#Credit: Aixxe @ aixxe.net
+if grep -q libAyyTux.so /proc/$csgo_pid/maps; then
+    /bin/echo -e "\e[33mRobertux já está injetado... Abortando...\e[0m"
+    exit
+fi
+
+input="$(
+sudo gdb -n -q -batch \
+  -ex "attach $csgo_pid" \
+  -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+  -ex "call \$dlopen(\"$(pwd)/libAyyTux.so\", 1)" \
+  -ex "detach" \
+  -ex "quit"
+)"
+
+last_line="${input##*$'\n'}"
+
+if [ "$last_line" != "\$1 = (void *) 0x0" ]; then
+    /bin/echo -e "\e[32m4:20Project injetado com sucesso!\e[0m"
+else
+    /bin/echo -e "\e[31mInjeção falhou, tenha certeza de compilar antes de injetar...\e[0m"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ ! -d ".git" ]; then
+    echo "pasta .git faltando. Não faça o download do repositorio como .zip pelo site do GitHub! Por favor refaça o download do Robertux usando o comando 'git clone --recursive https://github.com/dikbutt/AyyTux' Em uma nova pasta.."
+    exit
+else
+    git pull
+    git submodule update --init --recursive --remote
+    cmake .
+    make -j$(grep "^processor" /proc/cpuinfo | wc -l) "$@"
+fi
