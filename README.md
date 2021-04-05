@@ -1,8 +1,7 @@
 
-# What is AyyTux?
+# What is 420Project?
 
-AyyTux is a special place on earth, where all useless stuff we have in nyctum goes, after it's removed. Just know if we add something here, Nyctum does it much better.
-AimTux is a fully featured internal hack for *CounterStrike : Global Offensive* written in C++.
+420Project is a fully featured internal hack for *CounterStrike : Global Offensive* written in C++.
 
 ## Compiling
 
@@ -33,7 +32,7 @@ sudo emerge cmake dev-vcs/git gdb libsdl2 mesa lua xdotool
 ```
 ────────────────────────────────────────────────────────────────────────────────
 
-### Download AyyTux:
+### Download 420Project:
 
 ```bash
 git clone --recursive https://github.com/GreenByteSoftware/AyyTux
@@ -60,7 +59,7 @@ First of all, make sure CSGO is open, it doesn't matter whether you're in game o
 Navigate to the directory where AyyTux was built if you haven't ready.
 
 ```bash
-cd AyyTux
+cd 420Project
 ```
 Now, you can inject the hack with the `load` script
 
@@ -104,7 +103,7 @@ To see hidden folders inside your home folder, press <kbd>CTRL</kbd>+<kbd>H</kbd
 ## Grenade Configs
 
 ```bash
-~/.config/AyyTuxGH
+~/.config/420ProjectGH
 ```
 
 Each `config.json` is stored in the folder named after them map name.
